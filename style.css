@@ -12,9 +12,10 @@ body {
     "b c c d"
     "b c c d"
     "b c c d"
-    "b e e d";
+    "b e e d"
+    "f f f f";
   
-    grid-template-rows: 8% 23% 23% 23% 23%;
+    grid-template-rows: repeat(10,10%);
     grid-template-columns: 10% 40% 40% 10%;
 }
 
@@ -28,8 +29,8 @@ body {
 
 #header>p {
   text-align: center;
-  line-height: 3rem;
-  font-size: 2rem;
+  line-height: auto;
+  font-size: 2vw;
   margin-top: 0;
   margin-bottom: 0;
   color: #f0ebd8;
@@ -91,9 +92,6 @@ tr{
 .table-section-header {
   color: white;
   font-weight: bold;
-}
-td {
-  width: 10%;
 }
 #data {
 /*   width:50%; */
