@@ -3,6 +3,8 @@ https://coolors.co/palette/0d1321-1d2d44-3e5c76-748cab-f0ebd8
 */
 body {
   background-color: #748cab;
+  width: 100vw;
+  height: 100vh;
   display: grid;
   
   grid-template-areas:
@@ -10,8 +12,12 @@ body {
     "b c c d"
     "b c c d"
     "b c c d"
-    "b e e d"
+    "b e e d";
+  
+    grid-template-rows: 8% 23% 23% 23% 23%;
+    grid-template-columns: 10% 40% 40% 10%;
 }
+
 
 #header {
   grid-area: a;
