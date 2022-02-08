@@ -15,7 +15,7 @@ body {
     "b e e d"
     "f f f f";
   
-    grid-template-rows: repeat(10,10%);
+    grid-template-rows: 8% 21% 21% 21% 21% 8%;
     grid-template-columns: 10% 40% 40% 10%;
 }
 
@@ -150,6 +150,15 @@ tr{
   font-weight: bold;
   background-color: red;
   cursor: pointer;
+}
+
+#right-navigation {
+  grid-area: d;
+  background-color: #1d2d44;
+}
+#footer {
+  grid-area: f;
+  background-color: #1d2d44;
 }
 
 /* Taken from https://stackoverflow.com/a/15378182 */
