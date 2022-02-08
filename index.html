@@ -1,30 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Text Alteration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="./style.css" type = "text/css">
+</head>
+  
+<body>
+<!-- partial:index.partial.html -->
+  <div id = "header">
+    <p>Text Transformation</p>
+  </div> <!--END HEADER-->
+  
+  <div id = "sidebar">
+    <div id = "input-setup" class = "sidebar-header"><p>Input Settings</p></div>
+      <div class = "sidebar-item">
+        <div class = "sidebar-item-section">
+          <h1>Select External File</h1>
+          
+          <input type = "file" id = "file-input">
+        </div>
+        <div class = "sidebar-item-section">
+          <h1>Change Initial Delimiter</h1> <br>
+          <input type = "radio" id = "initial-delimiter-comma" name = "set-initial-delimiter"><label for="initial-delimiter-comma">Comma</label>
+          <input type = "radio" id = "initial-delimiter-tab" name = "set-initial-delimiter"><label for = "initial-delimiter-tab">Tab</label>
+        <input type = "radio" id = "initial-delimiter-space" name = "set-initial-delimiter"><label for = "initial-delimiter-space">Space</label>
+      <input type = "radio" id = "initial-delimiter-colon" name = "set-initial-delimiter"><label for = "initial-delimiter-colon">Colon</label>
+      <br>
+      <input type = "radio" id = "initial-delimiter-custom" name = "set-initial-delimiter"><label for = "initial-delimiter-custom">Custom:</label>
+          <input type = "text">
+        </div> <!--END SELECTION OF INITIAL DELIMITER-->
+      </div>
+    <div id = "special-characters" class = "sidebar-header"><p>Special Characters</p></div>
+    <div class = "sidebar-item">
+      <table>
+        <thead>
+          <th>Text</th><th>Effect</th>
+        </thead>
+        <tbody>
+          <tr class="table-section-header">
+            <td>Incrementers</td>
+          </tr>
+          <tr>
+            <td>~~1++~~</td><td>Arabic numerals (1,2,3)</td>
+          </tr>
+          <tr>
+            <td>~~I++~~</td><td>Roman numerals-uppercase(I,II,III)</td>
+          </tr>
+          <tr>
+            <td>~~i++~~</td><td>Roman numerals-lowercase(i,ii,iii)</td>
+          </tr>
+          <tr>
+            <td>~~A++~~</td><td>Letters-uppercase(A,B,C...AA...)</td>
+          </tr>
+          <tr>
+            <td>~~a++~~</td><td>Letters-lowercase(a,b,c...aa...)</td>
+          </tr>
+          </tbody>
+      </table>
+    </div>
+<!--     <div id = "add-file" class = "sidebar-header"><p>Add File</p></div>
+    <div class = "sidebar-item"></div> -->
+  </div>
+  
+  <div id = "data">
+    <textarea id = "data-input" placeholder = "input"></textarea>
+    <button id = "copy-output">Copy text</button> 
+  </div>
+  
+  <div id = "transformation">
+    
+    <div id = "line-wrap" class = "input-selection">
+      <input id = "wrap-line-left" class = "update-on-change" type = "text" placeholder = "Before">       <span class = "input-label">LINE</span>
+      <input id = "wrap-line-right" class = "update-on-change" type = "text" placeholder = "After">
+<!--       <input id = "line-delimiter" class = "update-on-change" value = "\n" type = "text">
+      <span class = "input-label">Line Delimiter</span> -->
+    </div> <!--END LINE WRAP-->
+    
+    <div id = "item-wrap" class = "input-selection">
+      <input id = "wrap-item-left" class = "update-on-change" type = "text" placeholder = "Before">
+      <span class = "input-label">ITEM</span>
+      <input id = "wrap-item-right" class = "update-on-change" type = "text" placeholder = "After">
+      <input id = "item-delimiter" class = "update-on-change" value = " " type = "text">
+      <span class = "input-label">Item Delimiter</span>
+<!--       <span id = "change-initial-delimiter">Change Initial Delimiter</span> -->
+    </div> <!--END ITEM WRAP-->
+    
+    <!--TODO: Delimiter default should be determined by looking at data, not hard-coded as space as it currently is 
+    Also need to include some indication for spaces
+  -->
+    
+  </div> <!--END TRANSFORMATION-->
+    
+    <div id = "clear-inputs-container">
+      <button id = "clear-inputs">CLEAR ALL</button>
+    </div> <!--END CLEAR INPUTS-->
 
-    <title>Hello world!</title>
+<!-- Test Text 
+343 4234234
+344 2222222
+109 8343434
+123 3242433
+877 4456564
+454 5675755
+345 5678444
+345 4545454
+909 9986676
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
+This is the first sentence.
+Here's the second sentence.
+Another sentence is right here.
+This is the fourth sentence.
+The fifth sentence is this one.
+This is the sixth, and final, sentence.
 
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
-  </head>
-  <body>
-    <!-- this is the start of content -->
-    <h1>
-      Hello World!
-    </h1>
-    <p>
-      This starter gives you everything you need to start working on a new
-      website, and nothing more. If you're looking for something a little more
-      opinionated, try remixing
-      <a href="https://glitch.com/edit/#!/remix/glitch-hello-website"
-        >~glitch-hello-website</a
-      >.
-    </p>
-  </body>
+(tab-separated, including after each line)
+Test 1,1 : 0.24.	Test 1,2 : 0.78.	Test 1,3 : 0.15.	Test 1,4 : 0.26.	Test 1,5 : 0.48.	Test 1,6 : 0.11.	Test 1,7 : 0.19.	
+Test 2,1 : 0.02.	Test 2,2 : 0.71.	Test 2,3 : 0.94.	Test 2,4 : 0.12.	Test 2,5 : 0.13.	Test 2,6 : 0.55.	Test 2,7 : 0.27.	
+Test 3,1 : 0.65.	Test 3,2 : 0.61.	Test 3,3 : 0.00.	Test 3,4 : 0.81.	Test 3,5 : 0.72.	Test 3,6 : 0.05.	Test 3,7 : 0.08.	
+Test 4,1 : 0.15.	Test 4,2 : 0.33.	Test 4,3 : 0.53.	Test 4,4 : 0.76.	Test 4,5 : 0.23.	Test 4,6 : 0.35.	Test 4,7 : 0.10.	
+Test 5,1 : 0.67.	Test 5,2 : 0.36.	Test 5,3 : 0.50.	Test 5,4 : 0.43.	Test 5,5 : 0.43.	Test 5,6 : 0.41.	Test 5,7 : 0.15.	
+Test 6,1 : 0.92.	Test 6,2 : 0.37.	Test 6,3 : 0.35.	Test 6,4 : 0.13.	Test 6,5 : 0.75.	Test 6,6 : 0.82.	Test 6,7 : 0.77.	
+Test 7,1 : 0.57.	Test 7,2 : 0.98.	Test 7,3 : 0.57.	Test 7,4 : 0.37.	Test 7,5 : 0.98.	Test 7,6 : 0.25.	Test 7,7 : 0.18.	
+
+a,b,c,d,e,f
+g,h,i,j,k,l
+m,n,o,p,q,r
+s,t,u,v,w,x
+y,z,a,b,c,d
+
+-->
+<!-- partial -->
+  <script  src="./script.js" type = "text/javascript"></script>
+
+</body>
 </html>
