@@ -104,8 +104,11 @@ function wrapText(e) {
 function copyToClipboard() {
   dataInputDiv.select();
   dataInputDiv.setSelectionRange(0,99999)
-  navigator.clipboard.writeText(dataInputDiv.value);
-  alert(dataInputDiv.value)
+  navigator.clipboard.writeText("hello there").then( () => {
+    //
+  }, () => {
+    alert("UNABLE TO COPY TO CLIPBOARD");
+  })
 }
 
 function clearAllInputs() {
