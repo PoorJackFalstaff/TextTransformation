@@ -83,9 +83,9 @@ function wrapText(e) {
     let char = inputText.charAt(i);
     if(char === vars.startingItemDelimiter || char === "\n") {
       //if newline found, symbol is replaced with 1 here, then itemCount actually changed to 1 later below
-      let newBeforeItem = beforeItem.replace("~~1++~~", char === "\n" ? 1 : itemCount);
-      let newBeforeLine = beforeLine.replace("~~1++~~", lineCount);
-      console.log(vars.startingItemDelimiter + "|")
+      let newBeforeItem = beforeItem.replace("~~1++~~", char === "\n" ? 1 : incrementers("~~1++~~", itemCount));
+      let newBeforeLine = beforeLine.replace("~~1++~~", incrementers("~~1++~~", lineCount));
+      
       if(char === vars.startingItemDelimiter) {
         itemCount++;
         char = afterItem + itemDelimiter + newBeforeItem;
@@ -101,11 +101,15 @@ function wrapText(e) {
   dataInputDiv.value = newText;
 }
 
+function incrementers(incrementer, count) {
+  return count;
+}
+
 function copyToClipboard() {
   dataInputDiv.select();
   dataInputDiv.setSelectionRange(0,99999)
-  navigator.clipboard.writeText("hello there").then( () => {
-    //
+  navigator.clipboard.writeText(dataInputDiv.value).then( () => {
+    console.log("Successfully copied")
   }, () => {
     alert("UNABLE TO COPY TO CLIPBOARD");
   })
