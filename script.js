@@ -104,14 +104,19 @@ function wrapText(e) {
 }
 
 function getIncrementer(text) {
+  //only one incrementer type is allowed per item/line 
+  //indexof a lot faster than includes
   if(text.indexOf("~~1++~~") > -1) return "~~1++~~";
   if(text.indexOf("~~I++~~") > -1) return "~~I++~~";
   if(text.indexOf("~~i++~~") > -1) return "~~i++~~";
+  if(test.indexOf("~~a++~~") > -1) return "~~a++~~";
 }
 
 function incrementers(incrementer, count) {
-  
-  return count;
+  //basic counter starts at 1 and goes on indefinitely
+  if(incrementer === "~~1++~~") return count;
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  if(incrementer === "~~a++~~") return letters[count];
 }
 
 function copyToClipboard() {
