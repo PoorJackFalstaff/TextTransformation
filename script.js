@@ -78,13 +78,15 @@ function wrapText(e) {
   let newText = "";
   let lineCount = 2;
   let itemCount = 2;
-  newText += beforeLine.replace("~~1++~~", 1) + beforeItem.replace("~~1++~~", 1);
+  const lineIncrementer = getIncrementer(beforeLine);
+  const itemIncrementer = getIncrementer(afterLine);
+  newText += beforeLine.replace(lineIncrementer, 1) + beforeItem.replace(itemIncrementer, 1);
   for(let i = 0; i < inputText.length; i++) {
     let char = inputText.charAt(i);
     if(char === vars.startingItemDelimiter || char === "\n") {
       //if newline found, symbol is replaced with 1 here, then itemCount actually changed to 1 later below
-      let newBeforeItem = beforeItem.replace("~~1++~~", char === "\n" ? 1 : incrementers("~~1++~~", itemCount));
-      let newBeforeLine = beforeLine.replace("~~1++~~", incrementers("~~1++~~", lineCount));
+      let newBeforeItem = beforeItem.replace(itemIncrementer, char === "\n" ? 1 : incrementers(itemIncrementer, itemCount));
+      let newBeforeLine = beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, lineCount));
       
       if(char === vars.startingItemDelimiter) {
         itemCount++;
@@ -101,7 +103,14 @@ function wrapText(e) {
   dataInputDiv.value = newText;
 }
 
+function getIncrementer(text) {
+  if(text.indexOf("~~1++~~") > -1) return "~~1++~~";
+  if(text.indexOf("~~I++~~") > -1) return "~~I++~~";
+  if(text.indexOf("~~i++~~") > -1) return "~~i++~~";
+}
+
 function incrementers(incrementer, count) {
+  
   return count;
 }
 
