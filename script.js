@@ -120,9 +120,14 @@ function getIncrementer(text) {
 function incrementers(incrementer, count) {
   //basic counter starts at 1 and goes on indefinitely
   if(incrementer === "~~1++~~") return count;
-  const letters = "abcdefghijklmnopqrstuvwxyz";
-  if(incrementer === "~~a++~~") return letters[(count - 1) % 26]; //need to change these so they go: y,z,aa,ab ....
-  if(incrementer === "~~A++~~") return letters[(count - 1) % 26].toUpperCase();
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
+  if(incrementer === "~~a++~~" || incrementer === "~~A++~~") {
+    let str = alphabet[(count - 1) % 26];
+    let magnitude = parseInt( (count - 1) / 26);
+    let modulo = (count-1) % 26;
+    if(magnitude > 0) str = alphabet[magnitude-1] + str;
+    return incrementer === "~a++" ? str: str.toUpperCase();
+  }
 }
 
 function copyToClipboard() {
