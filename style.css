@@ -16,7 +16,7 @@ body {
     "f f f f";
   
     grid-template-rows: 8% 21% 21% 21% 21% 8%;
-    grid-template-columns: 10% 40% 40% 10%;
+    grid-template-columns: 20% 30% 40% 10%;
 }
 
 
@@ -85,8 +85,11 @@ thead {
   margin-bottom: 10px;
   width: 10%;
 }
-tr{
+tr {
   border-bottom: 5px solid transparent;
+}
+td {
+  font-size: 1vw;
 }
 
 .table-section-header {

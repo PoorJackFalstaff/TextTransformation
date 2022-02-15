@@ -4,6 +4,7 @@ This is a basic utility for surrounding lines and items
 in a line with custom text. No QoL stuff in it yet.
 ONLY ARABIC NUMERAL INCREMENTER CURRENTLY WORKS--1 each in before line and before item
 //TODO: ADD OTHER INCREMENTERS, MAKE IT LOOK GOOD ON MOBILE
+//TODO: MAKE LETTER INCREMENTERS GO z, aa, ab.....
 //TODO: Add proper delimiter check
 //TODO: Need to support incoming delimiters that are multi-characters(outputing as such works fine)
 //TODO: uploading file needs to trigger the change vent of the data div
@@ -64,7 +65,7 @@ function setDataInput(e) {
   const regex = new RegExp(".+\n".repeat(lineCount));
   let sample = inputText.match(regex);
   sample = sample ? sample[0] : inputText;
-  // console.log(sample);
+  
   vars.startingItemDelimiter = getStartingItemDelimiter(sample);
   itemDelimiterDiv.value = vars.startingItemDelimiter;
   console.log(vars.startingItemDelimiter);
@@ -74,14 +75,17 @@ function setDataInput(e) {
 function wrapText(e) {
   if(inputText.length < 1) return;
   let [beforeLine, afterLine, beforeItem, afterItem, itemDelimiter] = [wrapLineLeft.value, wrapLineRight.value, wrapItemLeft.value, wrapItemRight.value, itemDelimiterDiv.value];
-  //go through text. if delimiter or newline character not found, send character to newtext string. if found, so stuff to it, then send to new text
+  
   let newText = "";
   let lineCount = 2;
   let itemCount = 2;
+  
   const lineIncrementer = getIncrementer(beforeLine);
   const itemIncrementer = getIncrementer(afterLine);
   newText += beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, 1)) + beforeItem.replace(incrementers(itemIncrementer, 1));
+  
   for(let i = 0; i < inputText.length; i++) {
+    //go through text. if delimiter or newline character not found, send character to newtext string. if found, so stuff to it, then send to new text
     let char = inputText.charAt(i);
     if(char === vars.startingItemDelimiter || char === "\n") {
       //if newline found, symbol is replaced with 1 here, then itemCount actually changed to 1 later below
@@ -110,16 +114,15 @@ function getIncrementer(text) {
   if(text.indexOf("~~I++~~") > -1) return "~~I++~~";
   if(text.indexOf("~~i++~~") > -1) return "~~i++~~";
   if(text.indexOf("~~a++~~") > -1) return "~~a++~~";
-  if(text.indexOf("~~A++~~") > -1)
+  if(text.indexOf("~~A++~~") > -1) return "~~A++~~";
 }
 
 function incrementers(incrementer, count) {
   //basic counter starts at 1 and goes on indefinitely
   if(incrementer === "~~1++~~") return count;
   const letters = "abcdefghijklmnopqrstuvwxyz";
-  if(count === 26) console.log("COUNT", count)
-  if(incrementer === "~~a++~~") return letters[(count - 1) % 26];
-  if(ince)
+  if(incrementer === "~~a++~~") return letters[(count - 1) % 26]; //need to change these so they go: y,z,aa,ab ....
+  if(incrementer === "~~A++~~") return letters[(count - 1) % 26].toUpperCase();
 }
 
 function copyToClipboard() {
