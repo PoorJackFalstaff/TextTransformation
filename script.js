@@ -80,7 +80,7 @@ function wrapText(e) {
   let itemCount = 2;
   const lineIncrementer = getIncrementer(beforeLine);
   const itemIncrementer = getIncrementer(afterLine);
-  newText += beforeLine.replace(lineIncrementer, 1) + beforeItem.replace(itemIncrementer, 1);
+  newText += beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, 1)) + beforeItem.replace(incrementers(itemIncrementer, 1));
   for(let i = 0; i < inputText.length; i++) {
     let char = inputText.charAt(i);
     if(char === vars.startingItemDelimiter || char === "\n") {
@@ -109,14 +109,17 @@ function getIncrementer(text) {
   if(text.indexOf("~~1++~~") > -1) return "~~1++~~";
   if(text.indexOf("~~I++~~") > -1) return "~~I++~~";
   if(text.indexOf("~~i++~~") > -1) return "~~i++~~";
-  if(test.indexOf("~~a++~~") > -1) return "~~a++~~";
+  if(text.indexOf("~~a++~~") > -1) return "~~a++~~";
+  if(text.indexOf("~~A++~~") > -1)
 }
 
 function incrementers(incrementer, count) {
   //basic counter starts at 1 and goes on indefinitely
   if(incrementer === "~~1++~~") return count;
   const letters = "abcdefghijklmnopqrstuvwxyz";
-  if(incrementer === "~~a++~~") return letters[count];
+  if(count === 26) console.log("COUNT", count)
+  if(incrementer === "~~a++~~") return letters[(count - 1) % 26];
+  if(ince)
 }
 
 function copyToClipboard() {
