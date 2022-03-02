@@ -81,8 +81,8 @@ function wrapText(e) {
   let itemCount = 2;
   
   const lineIncrementer = getIncrementer(beforeLine);
-  const itemIncrementer = getIncrementer(afterLine);
-  newText += beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, 1)) + beforeItem.replace(incrementers(itemIncrementer, 1));
+  const itemIncrementer = getIncrementer(beforeItem);
+  newText += beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, 1)) + beforeItem.replace(itemIncrementer, incrementers(itemIncrementer, 1));
   
   for(let i = 0; i < inputText.length; i++) {
     //go through text. if delimiter or newline character not found, send character to newtext string. if found, so stuff to it, then send to new text
@@ -91,7 +91,7 @@ function wrapText(e) {
       //if newline found, symbol is replaced with 1 here, then itemCount actually changed to 1 later below
       let newBeforeItem = beforeItem.replace(itemIncrementer, char === "\n" ? 1 : incrementers(itemIncrementer, itemCount));
       let newBeforeLine = beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, lineCount));
-      
+      console.log("NBI:", newBeforeItem);
       if(char === vars.startingItemDelimiter) {
         itemCount++;
         char = afterItem + itemDelimiter + newBeforeItem;
@@ -126,7 +126,7 @@ function incrementers(incrementer, count) {
     let magnitude = parseInt( (count - 1) / 26);
     let modulo = (count-1) % 26;
     if(magnitude > 0) str = alphabet[magnitude-1] + str;
-    return incrementer === "~a++" ? str: str.toUpperCase();
+    return incrementer === "~~a++~~" ? str: str.toUpperCase();
   }
 }
 
