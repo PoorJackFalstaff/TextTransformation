@@ -136,8 +136,27 @@ function alphaIncrementer(count, isUpper) {
 }
 
 function romanIncrementer(count, isUpper) {
+  const ones = count % 10;
+  let string = ["", "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix"][ones];
+  if(count < 10) return isUpper ? string.toUpperCase() : string;
   
+  const tens = Math.floor(count/10 % 10);
+  string = ["", "x", "xx", "xxx", "xl", "l", "lx", "lxx", "lxxx", "xc"][tens] + string;
+  if(count < 100) return isUpper ? string.toUpperCase() : string;
+
+  const hundreds = Math.floor(count/100 % 10);
+  string = ["", "c", "cc", "ccc", "cd", "d", "dc", "dcc", "dccc", "cm"][hundreds] + string;
+  if(count < 1000) return isUpper ? string.toUpperCase() : string;
+
+  const thousands = +count.toString().substring(0, count.toString().length -3);
+  let Ms = "";
+  for(let i = 0; i < thousands; i++) {
+    Ms += "m";
+  }
+  string = Ms + string;
+  return isUpper ? string.toUpperCase() : string;
 }
+
 
 function copyToClipboard() {
   dataInputDiv.select();
