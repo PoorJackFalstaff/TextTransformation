@@ -120,14 +120,23 @@ function getIncrementer(text) {
 function incrementers(incrementer, count) {
   //basic counter starts at 1 and goes on indefinitely
   if(incrementer === "~~1++~~") return count;
+  if(incrementer === "~~a++~~") return alphaIncrementer(count, false);
+  if(incrementer === "~~A++~~") return alphaIncrementer(count, true);
+  if(incrementer === "~~i++~~") return romanIncrementer(count, false);
+  if(incrementer === "~~I++~~") return romanIncrementer(count, true);
+}
+
+function alphaIncrementer(count, isUpper) {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  if(incrementer === "~~a++~~" || incrementer === "~~A++~~") {
-    let str = alphabet[(count - 1) % 26];
-    let magnitude = parseInt( (count - 1) / 26);
-    let modulo = (count-1) % 26;
-    if(magnitude > 0) str = alphabet[magnitude-1] + str;
-    return incrementer === "~~a++~~" ? str: str.toUpperCase();
-  }
+  let str = alphabet[(count - 1) % 26];
+  let magnitude = parseInt( (count - 1) / 26);
+  let modulo = (count-1) % 26;
+  if(magnitude > 0) str = alphabet[magnitude-1] + str;
+  return isUpper ? str.toUpperCase() : str;
+}
+
+function romanIncrementer(count, isUpper) {
+  
 }
 
 function copyToClipboard() {
