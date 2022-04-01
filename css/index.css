@@ -163,6 +163,7 @@ td {
 #clear-inputs {
   margin-top: 10px;
   background-color: red;
+  display: none;
   cursor: pointer;
 }
 

@@ -25,6 +25,7 @@ const wrapItemLeft = document.getElementById("wrap-item-left");
 const wrapItemRight = document.getElementById("wrap-item-right");
 const itemDelimiterDiv = document.getElementById("item-delimiter");
 const clearInputs = document.getElementById("clear-inputs");
+const textareaStatus = document.getElementById("textarea-status");
 let wasTruncated = false;
 
 const specialCharacters = document.getElementById("special-characters");
@@ -71,6 +72,8 @@ function setDataInput() {
   vars.startingItemDelimiter = getStartingItemDelimiter(sample);
   itemDelimiterDiv.value = vars.startingItemDelimiter;
   dataInputDiv.readOnly = true;
+  textareaStatus.innerText = `Input Locked ${wasTruncated ? 'Truncated - Preview' : ''}`
+  clearInputs.style.display = "inline-block";
 }
 
 function wrapText(e) {
