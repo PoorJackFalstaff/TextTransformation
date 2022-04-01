@@ -157,6 +157,7 @@ td {
 
 #copy-output {
   background-color: green;
+  display: none;
   cursor: pointer;
 }
 

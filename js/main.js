@@ -72,7 +72,8 @@ function setDataInput() {
   vars.startingItemDelimiter = getStartingItemDelimiter(sample);
   itemDelimiterDiv.value = vars.startingItemDelimiter;
   dataInputDiv.readOnly = true;
-  textareaStatus.innerText = `Input Locked ${wasTruncated ? 'Truncated - Preview' : ''}`
+  textareaStatus.innerText = 'Input Locked';
+  copyOutput.style.display = "inline-block";
   clearInputs.style.display = "inline-block";
 }
 
@@ -182,6 +183,9 @@ function clearAllInputs() {
   //TODO: capture initial value, so it can be defaulted back to that in some cases
   dataInputDiv.value = "";
   dataInputDiv.addEventListener("change", setDataInput, {once:true})
+  textareaStatus.innerText = 'Waiting for text'
+  copyOutput.style.display = "none";
+  clearInputs.style.display = "none";
   dataInputDiv.readOnly = false;
 }
 
