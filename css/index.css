@@ -23,16 +23,15 @@ body {
 #header {
   grid-area: a;
   background-color: #1d2d44;
-  align-items: middle;
-  justify-content: center;
+  vertical-align: middle;
 }
 
 #header>h1 {
   text-align: center;
-  font-size: 2vw;
+  font-size: 3vw;
   margin-top: 0;
   margin-bottom: 0;
-  color: #f0ebd8;
+  color: #f0ebd8;;
 }
 
 #sidebar {
