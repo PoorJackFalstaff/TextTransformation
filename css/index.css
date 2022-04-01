@@ -108,6 +108,14 @@ td {
   margin-top: 15px;
 }
 
+#transformation>h1 {
+  text-align: center;
+  font-size: 1.5em;
+  background-color: #1d2d44;
+  color: #f0ebd8;
+  margin-bottom: 5px;
+}
+
 .input-selection {
   margin-bottom: 5px;
 }
