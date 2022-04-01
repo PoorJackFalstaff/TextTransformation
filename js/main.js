@@ -25,7 +25,7 @@ const wrapItemLeft = document.getElementById("wrap-item-left");
 const wrapItemRight = document.getElementById("wrap-item-right");
 const itemDelimiterDiv = document.getElementById("item-delimiter");
 const clearInputs = document.getElementById("clear-inputs");
-
+let wasTruncated = false;
 
 const specialCharacters = document.getElementById("special-characters");
 
@@ -63,11 +63,11 @@ function setDataInput(e) {
   const maxLines = 20;
   const regex = new RegExp(".+\n".repeat(maxLines));
   let sample = inputText.match(regex);
+  if(sample) wasTruncated = true;
   sample = sample ? sample[0] : inputText;
   
   vars.startingItemDelimiter = getStartingItemDelimiter(sample);
   itemDelimiterDiv.value = vars.startingItemDelimiter;
-  console.log(vars.startingItemDelimiter);
   dataInputDiv.readOnly = true;
 }
 
@@ -90,7 +90,6 @@ function wrapText(e) {
       //if newline found, symbol is replaced with 1 here, then itemCount actually changed to 1 later below
       let newBeforeItem = beforeItem.replace(itemIncrementer, char === "\n" ? 1 : incrementers(itemIncrementer, itemCount));
       let newBeforeLine = beforeLine.replace(lineIncrementer, incrementers(lineIncrementer, lineCount));
-      console.log("NBI:", newBeforeItem);
       if(char === vars.startingItemDelimiter) {
         itemCount++;
         char = afterItem + itemDelimiter + newBeforeItem;
