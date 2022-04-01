@@ -161,8 +161,14 @@ td {
   cursor: pointer;
 }
 
+#save-output {
+  background-color: purple;
+  display: none;
+  cursor: pointer;
+}
+
 #clear-inputs {
-  margin-top: 10px;
+  margin-top: 40px;
   background-color: red;
   display: none;
   cursor: pointer;

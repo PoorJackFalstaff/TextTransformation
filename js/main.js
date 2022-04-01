@@ -26,6 +26,7 @@ const wrapItemRight = document.getElementById("wrap-item-right");
 const itemDelimiterDiv = document.getElementById("item-delimiter");
 const clearInputs = document.getElementById("clear-inputs");
 const textareaStatus = document.getElementById("textarea-status");
+const saveOutput = document.getElementById("save-output");
 let wasTruncated = false;
 
 const specialCharacters = document.getElementById("special-characters");
@@ -40,6 +41,7 @@ let vars = {
 document.addEventListener("DOMContentLoaded", function() {
   fileInput.addEventListener("change", (e) => {
     let fileReader = new FileReader();
+    console.log(e.target);
     let file = e.target.files[0];
     fileReader.readAsText(file);
     fileReader.onload = () => {
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
   })
   dataInputDiv.addEventListener("change", setDataInput, {once: true});
   copyOutput.addEventListener("click", copyToClipboard)
+  saveOutput.addEventListener("click", saveToComputer);
   document.querySelectorAll(".update-on-change").forEach( x => x.addEventListener("input", wrapText));
   clearInputs.addEventListener("click", clearAllInputs)
   document.querySelectorAll(".sidebar-header").forEach(x => {
@@ -74,6 +77,7 @@ function setDataInput() {
   dataInputDiv.readOnly = true;
   textareaStatus.innerText = 'Input Locked';
   copyOutput.style.display = "inline-block";
+  saveOutput.style.display = "inline-block";
   clearInputs.style.display = "inline-block";
 }
 
@@ -171,6 +175,11 @@ function copyToClipboard() {
     alert("UNABLE TO COPY TO CLIPBOARD");
   })
 }
+// function saveToComputer() { 
+//   const data = dataInputDiv.value;
+//   const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+//   saveAs(blob, )
+// }
 
 function clearAllInputs() {
   for(let elem of [wrapLineLeft, wrapLineRight, wrapItemLeft, wrapItemRight]) {
@@ -185,6 +194,7 @@ function clearAllInputs() {
   dataInputDiv.addEventListener("change", setDataInput, {once:true})
   textareaStatus.innerText = 'Waiting for text'
   copyOutput.style.display = "none";
+  saveOutput.style.display = "none";
   clearInputs.style.display = "none";
   dataInputDiv.readOnly = false;
 }
