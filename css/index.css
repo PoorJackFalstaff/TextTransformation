@@ -22,14 +22,13 @@ body {
 
 #header {
   grid-area: a;
-/*   width: 100%; */
   background-color: #1d2d44;
-/*   height: 10vh; */
+  align-items: middle;
+  justify-content: center;
 }
 
-#header>p {
+#header>h1 {
   text-align: center;
-  line-height: auto;
   font-size: 2vw;
   margin-top: 0;
   margin-bottom: 0;
@@ -39,9 +38,6 @@ body {
 #sidebar {
   grid-area: b;
   background-color: #1d2d44;
-/*   height: 89vh; */
-/*   width: 20vw; */
-/*   float: left; */
   text-align: center;
   
   -moz-user-select: none;
