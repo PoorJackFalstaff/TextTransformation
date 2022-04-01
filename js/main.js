@@ -59,12 +59,13 @@ function setDataInput(e) {
   inputText = e.target.value.trim();
   inputText = inputText.replaceAll(/\s+\n/g, "\n");//trim each line
   
-  
+  //RE-ADD LATER
   //get first x lines of text, assuming \n is delimiter. if sample < x lines, get all of input
-  const lineCount = 5;
-  const regex = new RegExp(".+\n".repeat(lineCount));
-  let sample = inputText.match(regex);
-  sample = sample ? sample[0] : inputText;
+  // const lineCount = 5;
+  // const regex = new RegExp(".+\n".repeat(lineCount));
+  // let sample = inputText.match(regex);
+  // sample = sample ? sample[0] : inputText;
+  const sample = inputText;
   
   vars.startingItemDelimiter = getStartingItemDelimiter(sample);
   itemDelimiterDiv.value = vars.startingItemDelimiter;
