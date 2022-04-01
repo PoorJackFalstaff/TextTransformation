@@ -10,12 +10,10 @@ body {
   grid-template-areas:
     "a a a a"
     "b c c d"
-    "b c c d"
-    "b e e d"
     "b e e d"
     "f f f f";
   
-    grid-template-rows: 8% 21% 21% 21% 21% 8%;
+    grid-template-rows: 10% 50% 30% 10%;
     grid-template-columns: 20% 30% 40% 10%;
 }
 
@@ -31,20 +29,7 @@ body {
   font-size: 3vw;
   margin-top: 0;
   margin-bottom: 0;
-  color: #f0ebd8;;
-}
-
-
-
-#data_transformed {
-  grid-area: c;
-}
-
-#data-input {
-  width: 100%;
-  height: 100%;
-  background-color: #f0ebd8;
-  resize: none;
+  color: #f0ebd8;
 }
 
 #sidebar {
@@ -105,8 +90,22 @@ td {
   font-weight: bold;
 }
 
+#data {
+  grid-area: c;
+}
+
+#data-input {
+  width: 100%;
+  height: 100%;
+  background-color: #f0ebd8;
+  resize: none;
+}
+
+
+
 #transformation {
   grid-area: e;
+  margin-top: 15px;
 }
 
 .input-selection {
@@ -128,8 +127,6 @@ td {
 #line-delimiter, #item-delimiter {
   width: 50px;
 }
-
-
 
 
 #right-options {
