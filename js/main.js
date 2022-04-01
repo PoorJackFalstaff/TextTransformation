@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fileReader.readAsText(file);
     fileReader.onload = () => {
       dataInputDiv.value = fileReader.result;
+      setDataInput();
     }
     
   })
@@ -55,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 })
 
-function setDataInput(e) {
-  inputText = e.target.value.trim();
+function setDataInput() {
+  inputText = dataInputDiv.value.trim();
   inputText = inputText.replaceAll(/\s+\n/g, "\n");//trim each line
   
   //get first x lines of text, assuming \n is delimiter. if sample < x lines, get all of input
@@ -65,6 +66,7 @@ function setDataInput(e) {
   let sample = inputText.match(regex);
   if(sample) wasTruncated = true;
   sample = sample ? sample[0] : inputText;
+  dataInputDiv.value = sample;
   
   vars.startingItemDelimiter = getStartingItemDelimiter(sample);
   itemDelimiterDiv.value = vars.startingItemDelimiter;
