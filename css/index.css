@@ -142,28 +142,26 @@ td {
   background-color: #1d2d44;
 }
 #right-options>* {
-  width: 100%;
+  width: 90%;
   height: 50px;
   margin: 5px;
+  color: white;
+  font-weight: bold;
 }
 
 #textarea-status {
-  background-color: #f0ebd8;
+  background-color: #748cab;
   text-align: center;
   line-height: 50px;
 }
 
 #copy-output {
-  color: white;
-  font-weight: bold;
   background-color: green;
   cursor: pointer;
 }
 
 #clear-inputs {
   margin-top: 10px;
-  color: white;
-  font-weight: bold;
   background-color: red;
   cursor: pointer;
 }
