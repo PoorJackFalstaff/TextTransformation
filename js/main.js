@@ -28,6 +28,7 @@ const clearInputs = document.getElementById("clear-inputs");
 const textareaStatus = document.getElementById("textarea-status");
 const saveOutput = document.getElementById("save-output");
 let wasTruncated = false;
+let fileName;
 
 const specialCharacters = document.getElementById("special-characters");
 
@@ -41,8 +42,9 @@ let vars = {
 document.addEventListener("DOMContentLoaded", function() {
   fileInput.addEventListener("change", (e) => {
     let fileReader = new FileReader();
-    console.log(e.target);
+    // console.log(e.target.files);
     let file = e.target.files[0];
+    fileName = file.name;
     fileReader.readAsText(file);
     fileReader.onload = () => {
       dataInputDiv.value = fileReader.result;
@@ -175,11 +177,11 @@ function copyToClipboard() {
     alert("UNABLE TO COPY TO CLIPBOARD");
   })
 }
-// function saveToComputer() { 
-//   const data = dataInputDiv.value;
-//   const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-//   saveAs(blob, )
-// }
+function saveToComputer() { 
+  const data = dataInputDiv.value;
+  const blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+  saveAs(blob, fileName ? `${fileName.split('.')[0]}_transformed.${fileName.split('.')[1]}` : 'output.txt');
+}
 
 function clearAllInputs() {
   for(let elem of [wrapLineLeft, wrapLineRight, wrapItemLeft, wrapItemRight]) {
