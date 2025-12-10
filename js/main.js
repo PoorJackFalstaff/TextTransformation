@@ -209,5 +209,5 @@ function setupSideBarHeaderToggle() {
 
 function getStartingItemDelimiter(text) {
   //disregard ending delimiter candidates
-  return " ";
+  return ",";
 }
